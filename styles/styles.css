@@ -53,10 +53,34 @@ h4 {
   display: block;
 }
 
-.result-price {
+.result {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.result h3 {
+  margin: 8px;
+  margin-top: 2px;
+}
+
+/* .result {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+margin: 10px;
+color: #fff;
+font-weight: 600;
+font-size: 28px;
+} */
+
+
+/* .result-price {
 display: flex;
 margin: 5px;
-}
+} */
 
 .boton-elegante {
 padding: 15px 30px;
@@ -103,17 +127,6 @@ display: flex;
 flex-direction: column;
 gap: 10px;
 margin: 10px;
-}
-
-.result {
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 10px;
-margin: 10px;
-color: #fff;
-font-weight: 600;
-font-size: 28px;
 }
 
 /* Estilização para Radio Buttons */

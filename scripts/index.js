@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
         calcularServico();
     });
 
-    // Função para calcular o serviço
     function calcularServico() {
         let valorPeca = 0;
         let maoDeObra;
@@ -15,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (document.getElementById('repair-check-1').checked) {
             tipoReparo = "1"; // Reparo sem peça
             maoDeObra = 70;
-            valorPeca = 0; // Não há valor de peça para este tipo de reparo
+            valorPeca = 0;
         } else if (document.getElementById('repair-check-2').checked) {
             tipoReparo = "2"; // Reparo com peça fácil/médio
             maoDeObra = 100;
@@ -50,21 +49,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const valorPecaComLucro = valorPeca * (1 + percentualLucro);
         const valorServico = valorPecaComLucro + maoDeObra;
 
-        // Verificando a forma de pagamento (radio buttons)
-        let valorFinal;
-        if (document.getElementById('payment-check-1').checked || document.getElementById('payment-check-2').checked) {
-            valorFinal = valorServico * 0.92; // Desconto de 8% para Pix ou Dinheiro
-        } else if (document.getElementById('payment-check-3').checked) {
-            valorFinal = valorServico * 0.8911; // Desconto de -10.89% para Crédito (2x)
-        } else if (document.getElementById('payment-check-4').checked) {
-            valorFinal = valorServico * 0.9771; // Desconto de 2.29% para Débito
-        } else {
-            alert("Escolha uma forma de pagamento.");
-            return;
-        }
+        // Calculando valores para diferentes formas de pagamento
+        const valorPixDinheiro = valorServico * 0.92;
+        const valorCartao1x = valorServico * 0.9551; // Desconto de 4.49% para crédito 1x
+        const valorCartao2x = valorServico * 1.10;   // 10% a mais para crédito 2x
+        const valorDebito = valorServico * 0.9771;   // 2.29% de desconto para débito
 
-        // Atualizando o valor na página
-        const resultPrice = document.querySelector('.result-price');
-        resultPrice.textContent = `R$${valorFinal.toFixed(2)}`;
+        // Atualizando os valores na página
+        document.querySelector('.result-price').textContent = `R$${valorPixDinheiro.toFixed(2)}`;
+        document.querySelector('.result-price-credit').textContent = `R$${valorCartao1x.toFixed(2)}`;
+        document.querySelector('.result-price-credit-2x').textContent = `R$${valorCartao2x.toFixed(2)}`;
+        document.querySelector('.result-price-debit').textContent = `R$${valorDebito.toFixed(2)}`;
     }
 });

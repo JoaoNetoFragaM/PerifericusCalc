@@ -48,33 +48,23 @@
                 </div>
             </div>
 
-            <div class="payment-method mb-4">
-                <h4 class="text-center text-lg font-semibold mb-2">Forma de Pagamento</h4>
-                <form class="my-form2">
-                    <div class="flex items-center mb-2">
-                        <input id="payment-check-1" type="radio" name="payment-method" class="mr-2" checked>
-                        <label for="payment-check-1">Pix</label>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <input id="payment-check-2" type="radio" name="payment-method" class="mr-2">
-                        <label for="payment-check-2">Dinheiro</label>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <input id="payment-check-3" type="radio" name="payment-method" class="mr-2">
-                        <label for="payment-check-3">Crédito</label>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <input id="payment-check-4" type="radio" name="payment-method" class="mr-2">
-                        <label for="payment-check-4">Débito</label>
-                    </div>
-                </form>
-            </div>
             
             <button id="calc-button" class="boton-elegante w-full py-2 text-xl mt-4">Calcular</button>
 
-            <div class="result text-center mt-4">
-                <h1 class="result-price text-2xl font-bold">00,00</h1>
+            <div class="result">
+                <h2>Preço Pix ou Dinheiro</h2>
+                <h3 class="result-price text-2xl font-bold">00,00</h1>
+
+                <h2>Preço no Cartão</h2>
+                <h3 class="result-price-credit text-2xl font-bold">00,00</h1>
+
+                <h2>Preço no Cartão em 2x</h2>
+                <h3 class="result-price-credit-2x text-2xl font-bold">00,00</h1>
+
+                <h2>Preço no Débito</h2>
+                <h3 class="result-price-debit text-2xl font-bold">00,00</h1>
             </div>
+
         </div>
     </div>
     <script src="scripts/index.js"></script>

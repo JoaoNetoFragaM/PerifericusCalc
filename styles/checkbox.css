@@ -1,0 +1,55 @@
+/* Estilos para os radio buttons */
+.my-form input[type="radio"],
+.my-form2 input[type="radio"] {
+  appearance: none;
+  outline: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  aspect-ratio: 1;
+  padding: 0.25rem;
+  background: transparent;
+  border: 1px solid var(--_clr-current);
+  border-radius: 50%; /* Alterando para borda arredondada (radio) */
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+
+/* Estilos para o ícone dentro do radio button */
+.my-form input[type="radio"]::after,
+.my-form2 input[type="radio"]::after {
+  content: "\2022"; /* Usando um ponto (•) para o ícone do radio */
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+  color: var(--_clr-checked);
+  font-size: inherit;
+  font-family: inherit;
+}
+
+/* Estilos quando o rádio é selecionado */
+.my-form input[type="radio"]:checked::after,
+.my-form2 input[type="radio"]:checked::after {
+  opacity: 1;
+}
+
+/* Estilos para o hover e focus */
+.my-form input[type="radio"]:hover,
+.my-form2 input[type="radio"]:hover,
+.my-form input[type="radio"]:focus-visible,
+.my-form2 input[type="radio"]:focus-visible {
+  --_clr-current: var(--_clr-hover);
+}
+
+/* Estilos quando o rádio é focado ou selecionado */
+.my-form input[type="radio"]:checked + label:not(:hover),
+.my-form2 input[type="radio"]:checked + label:not(:hover) {
+  --_clr-current: var(--_clr-checked);
+}
+
+.my-form input[type="radio"]:focus-visible::after,
+.my-form input[type="radio"]:hover::after,
+.my-form2 input[type="radio"]:focus-visible::after,
+.my-form2 input[type="radio"]:hover::after {
+  opacity: 0.5;
+  color: var(--_clr-hover);
+}

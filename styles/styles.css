@@ -1,0 +1,183 @@
+/* Reset e base */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #212121;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.centered-div {
+  width: 300px;
+  padding: 20px;
+  background-color: #3d3d3d;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+h4 {
+  color: #fff;
+  font-weight: 600;
+}
+
+.title-choice {
+  color: #fff;
+  font-weight: 600;
+  margin: 4px;
+}
+
+.form-check {
+  display: inline-block;
+  text-align: center;
+  margin: 16px;
+}
+
+.form-check-input {
+  margin-bottom: 5px;
+}
+
+.form-check-label {
+  display: block;
+}
+
+.result-price {
+display: flex;
+margin: 5px;
+}
+
+.boton-elegante {
+padding: 15px 30px;
+border: 2px solid #2c2c2c;
+background-color: #1a1a1a;
+color: #ffffff;
+font-size: 1.2rem;
+cursor: pointer;
+border-radius: 30px;
+transition: all 0.4s ease;
+outline: none;
+position: relative;
+overflow: hidden;
+font-weight: bold;
+}
+
+.boton-elegante::after {
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: radial-gradient(
+  circle,
+  rgba(255, 255, 255, 0.25) 0%,
+  rgba(255, 255, 255, 0) 70%
+);
+transform: scale(0);
+transition: transform 0.5s ease;
+}
+
+.boton-elegante:hover::after {
+transform: scale(4);
+}
+
+.boton-elegante:hover {
+border-color: #666666;
+background: #292929;
+}
+
+.payment-method {
+display: flex;
+flex-direction: column;
+gap: 10px;
+margin: 10px;
+}
+
+.result {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+margin: 10px;
+color: #fff;
+font-weight: 600;
+font-size: 28px;
+}
+
+/* Estilização para Radio Buttons */
+.my-form, .my-form2 {
+  --_clr-primary: #fff;
+  --_clr-hover: #f33195;
+  --_clr-checked: #127acf;
+}
+.my-form > div, .my-form2 > div {
+  --_clr-current: var(--_clr-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+.my-form > div + div, .my-form2 > div + div {
+  margin-block-start: 0.5rem;
+}
+.my-form label, .my-form2 label {
+  cursor: pointer;
+  color: var(--_clr-current);
+  transition: color 150ms ease-in-out;
+}
+.my-form input[type="radio"], .my-form2 input[type="radio"] {
+  appearance: none;
+  outline: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  aspect-ratio: 1;
+  padding: 0.25rem;
+  background: transparent;
+  border: 1px solid var(--_clr-current);
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+}
+.my-form input[type="radio"]::after, .my-form2 input[type="radio"]::after {
+  content: "";
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+  color: var(--_clr-checked);
+  font-size: inherit;
+  font-family: inherit;
+  border-radius: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: var(--_clr-checked);
+}
+.my-form label:hover, .my-form input[type="radio"]:focus-visible, .my-form input[type="radio"]:focus-visible + label,
+.my-form input[type="radio"]:hover, .my-form input[type="radio"]:hover + label,
+.my-form2 label:hover, .my-form2 input[type="radio"]:focus-visible, .my-form2 input[type="radio"]:focus-visible + label,
+.my-form2 input[type="radio"]:hover, .my-form2 input[type="radio"]:hover + label {
+  --_clr-current: var(--_clr-hover);
+}
+.my-form input[type="radio"]:focus-visible::after, .my-form input[type="radio"]:hover::after,
+.my-form2 input[type="radio"]:focus-visible::after, .my-form2 input[type="radio"]:hover::after {
+  opacity: 0.5;
+  background-color: var(--_clr-hover);
+}
+.my-form input[type="radio"]:checked + label:not(:hover), .my-form2 input[type="radio"]:checked + label:not(:hover),
+.my-form input[type="radio"]:checked:not(:hover), .my-form2 input[type="radio"]:checked:not(:hover) {
+  --_clr-current: var(--_clr-checked);
+}
+.my-form input[type="radio"]:checked::after, .my-form2 input[type="radio"]:checked::after {
+  opacity: 1;
+}

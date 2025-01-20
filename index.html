@@ -48,21 +48,41 @@
                 </div>
             </div>
 
-            
+            <!-- Nova Div de Insert Price Shipping -->
+            <div class="insert-price-shipping mb-4">
+                <h4 class="part-price text-center text-lg font-semibold">Preço de Envio</h4>
+                <div class="flex h-[34px] text-[14px] text-white/60 w-[240px] items-center 
+                            bg-[#09090b] border border-white/10 rounded-lg focus-within:ring-2 
+                            focus-within:ring-gray-700 focus-within:ring-offset-2 focus-within:ring-offset-[#09090b] 
+                            transition-all duration-150 ease-in-out mx-auto">
+                    <span class="ml-2 text-white">R$</span>
+                    <input
+                        required=""
+                        class="bg-transparent text-[#f4f4f5] px-3 py-1 rounded-l-lg focus:outline-none w-full"
+                        id="shipping-currency-input"
+                        name="text"
+                        type="text"
+                        placeholder="0,00"
+                        oninput="this.value = this.value.replace(/[^0-9,]/g, '')"
+                    />
+                    <span class="mr-2 text-white">BRL</span>
+                </div>
+            </div>
+
             <button id="calc-button" class="boton-elegante w-full py-2 text-xl mt-4">Calcular</button>
 
             <div class="result">
                 <h2>Preço Pix ou Dinheiro</h2>
-                <h3 class="result-price text-2xl font-bold">00,00</h1>
+                <h3 class="result-price text-2xl font-bold">00,00</h3>
 
                 <h2>Preço no Cartão</h2>
-                <h3 class="result-price-credit text-2xl font-bold">00,00</h1>
+                <h3 class="result-price-credit text-2xl font-bold">00,00</h3>
 
                 <h2>Preço no Cartão em 2x</h2>
-                <h3 class="result-price-credit-2x text-2xl font-bold">00,00</h1>
+                <h3 class="result-price-credit-2x text-2xl font-bold">00,00</h3>
 
                 <h2>Preço no Débito</h2>
-                <h3 class="result-price-debit text-2xl font-bold">00,00</h1>
+                <h3 class="result-price-debit text-2xl font-bold">00,00</h3>
             </div>
 
         </div>

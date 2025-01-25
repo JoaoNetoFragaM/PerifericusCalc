@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Calculando valores para diferentes formas de pagamento
         const valorPixDinheiro = valorServico; // Sem desconto
         const valorCartao1x = (valorServico * 0.945).toFixed(2); // Ajustado para bater com R$246.91
-        const valorCartao2x = (valorServico * 1.1098).toFixed(2); // Ajustado para bater com R$232.80
+        const valorCartao2x = (valorPixDinheiro * 0.8911).toFixed(2); // Aplicado desconto de -10.89% no PixDinheiro
         const valorDebito = (valorServico * 0.9771).toFixed(2);   // 2.29% de desconto para débito
 
         // Atualizando os valores na página

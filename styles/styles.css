@@ -1,4 +1,10 @@
 /* Reset e base */
+:root {
+  --main-color: #1B1B1B;
+  --sec-color: #121212;
+}
+
+
 body {
   display: flex;
   justify-content: center;
@@ -6,7 +12,7 @@ body {
   height: 100vh;
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #212121;
+  background-color: var(--main-color);
 }
 
 .container {
@@ -19,7 +25,7 @@ body {
 .centered-div {
   width: 300px;
   padding: 20px;
-  background-color: #3d3d3d;
+  background-color: var(--sec-color);
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -65,23 +71,6 @@ h4 {
   margin-top: 2px;
 }
 
-/* .result {
-display: flex;
-justify-content: center;
-align-items: center;
-gap: 10px;
-margin: 10px;
-color: #fff;
-font-weight: 600;
-font-size: 28px;
-} */
-
-
-/* .result-price {
-display: flex;
-margin: 5px;
-} */
-
 .boton-elegante {
 padding: 15px 30px;
 border: 2px solid #2c2c2c;
@@ -118,7 +107,7 @@ transform: scale(4);
 }
 
 .boton-elegante:hover {
-border-color: #666666;
+border-color: #F53D0B;
 background: #292929;
 }
 
@@ -132,8 +121,8 @@ margin: 10px;
 /* Estilização para Radio Buttons */
 .my-form, .my-form2 {
   --_clr-primary: #fff;
-  --_clr-hover: #f33195;
-  --_clr-checked: #127acf;
+  --_clr-hover: #9b2111;
+  --_clr-checked: #F53D0B;
 }
 .my-form > div, .my-form2 > div {
   --_clr-current: var(--_clr-primary);

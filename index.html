@@ -3,88 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Calculadora de Serviço</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/styles.css">
 </head>
-<body class="bg-[#212121]">
-    <div class="container flex justify-center items-center h-screen">
-        <div class="centered-div p-6 bg-[#3d3d3d] rounded-lg shadow-lg text-white">
-            <h4 class="title-choice text-center font-semibold text-xl mb-4">Escolha o tipo de reparo</h4>
-            <div class="repair-checkboxes">
-                <form class="my-form">
-                    <div class="flex items-center mb-2">
-                        <input id="repair-check-1" type="radio" name="repair-type" class="mr-2" checked>
-                        <label for="repair-check-1">Reparo sem peça</label>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <input id="repair-check-2" type="radio" name="repair-type" class="mr-2">
-                        <label for="repair-check-2">Reparo com peça fácil/médio</label>
-                    </div>
-                    <div class="flex items-center mb-2">
-                        <input id="repair-check-3" type="radio" name="repair-type" class="mr-2">
-                        <label for="repair-check-3">Reparo com peça difícil/iPhone</label>
-                    </div>
-                </form>
-            </div>
+<body>
+    <div class="container">
+        <div class="content">
+            <h4 class="title">Calculadora de Serviço</h4>
 
-            <div class="insert-price mb-4">
-                <h4 class="part-price text-center text-lg font-semibold">Preço Da Peça</h4>
-                <div class="flex h-[34px] text-[14px] text-white/60 w-[240px] items-center 
-                            bg-[#09090b] border border-white/10 rounded-lg focus-within:ring-2 
-                            focus-within:ring-gray-700 focus-within:ring-offset-2 focus-within:ring-offset-[#09090b] 
-                            transition-all duration-150 ease-in-out mx-auto">
-                    <span class="ml-2 text-white">R$</span>
-                    <input
-                        required=""
-                        class="bg-transparent text-[#f4f4f5] px-3 py-1 rounded-l-lg focus:outline-none w-full"
-                        id="currency-input"
-                        name="text"
-                        type="text"
-                        placeholder="0,00"
-                        oninput="this.value = this.value.replace(/[^0-9,]/g, '')"
-                    />
-                    <span class="mr-2 text-white">BRL</span>
+            <!-- Valor da Peça -->
+            <div class="input-group">
+                <label>Valor da Peça</label>
+                <div class="input-container">
+                    <span>R$</span>
+                    <input id="valor-peca" type="text" placeholder="0,00" pattern="^[0-9,]*$" />
+                    <span>BRL</span>
                 </div>
             </div>
 
-            <!-- Nova Div de Insert Price Shipping -->
-            <div class="insert-price-shipping mb-4">
-                <h4 class="part-price text-center text-lg font-semibold">Preço de Envio</h4>
-                <div class="flex h-[34px] text-[14px] text-white/60 w-[240px] items-center 
-                            bg-[#09090b] border border-white/10 rounded-lg focus-within:ring-2 
-                            focus-within:ring-gray-700 focus-within:ring-offset-2 focus-within:ring-offset-[#09090b] 
-                            transition-all duration-150 ease-in-out mx-auto">
-                    <span class="ml-2 text-white">R$</span>
-                    <input
-                        required=""
-                        class="bg-transparent text-[#f4f4f5] px-3 py-1 rounded-l-lg focus:outline-none w-full"
-                        id="shipping-currency-input"
-                        name="text"
-                        type="text"
-                        placeholder="0,00"
-                        oninput="this.value = this.value.replace(/[^0-9,]/g, '')"
-                    />
-                    <span class="mr-2 text-white">BRL</span>
+            <!-- Preço do Envio -->
+            <div class="input-group">
+                <label>Preço do Envio</label>
+                <div class="input-container">
+                    <span>R$</span>
+                    <input id="preco-envio" type="text" placeholder="0,00" pattern="^[0-9,]*$" />
+                    <span>BRL</span>
                 </div>
             </div>
 
-            <button id="calc-button" class="boton-elegante w-full py-2 text-xl mt-4">Calcular</button>
+            <!-- Botão para mostrar mais opções -->
+            <button id="toggle-options">Porcentagem e Lucro</button>
 
+            <!-- Inputs escondidos -->
+            <div id="extra-options" class="hidden">
+                <div class="input-group">
+                    <label>Valor do Serviço</label>
+                    <div class="input-container">
+                        <span>R$</span>
+                        <input id="valor-servico" type="text" placeholder="0,00" pattern="^[0-9,]*$" />
+                        <span>BRL</span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>Porcentagem Adicional</label>
+                    <div class="input-container">
+                        <input id="percentual" type="number" placeholder="0" />
+                        <span>%</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botão de Cálculo -->
+            <button id="calc-button">Calcular</button>
+
+            <!-- Resultado -->
             <div class="result">
-                <h2>Preço Pix ou Dinheiro</h2>
-                <h3 class="result-price text-2xl font-bold">00,00</h3>
-
-                <h2>Preço no Cartão</h2>
-                <h3 class="result-price-credit text-2xl font-bold">00,00</h3>
-
-                <h2>Preço no Cartão em 2x</h2>
-                <h3 class="result-price-credit-2x text-2xl font-bold">00,00</h3>
-
-                <h2>Preço no Débito</h2>
-                <h3 class="result-price-debit text-2xl font-bold">00,00</h3>
+                <h2>Preço Final</h2>
+                <h3 id="final-price">00,00</h3>
             </div>
-
         </div>
     </div>
     <script src="scripts/index.js"></script>

@@ -1,71 +1,59 @@
 document.addEventListener('DOMContentLoaded', () => {
     const calcButton = document.getElementById('calc-button');
+    const resultDisplay = document.getElementById('final-price');
+    const toggleOptionsButton = document.getElementById("toggle-options");
+    const extraOptions = document.getElementById("extra-options");
 
-    calcButton.addEventListener('click', () => {
-        calcularServico();
+    // Seleciona os inputs
+    const valorPecaInput = document.getElementById('valor-peca');
+    const valorServicoInput = document.getElementById('valor-servico');
+    const precoEnvioInput = document.getElementById('preco-envio');
+    const percentualInput = document.getElementById('percentual');
+
+    // Função para salvar os valores no localStorage
+    function salvarDados() {
+        localStorage.setItem('valorPeca', valorPecaInput.value);
+        localStorage.setItem('valorServico', valorServicoInput.value);
+        localStorage.setItem('precoEnvio', precoEnvioInput.value);
+        localStorage.setItem('percentual', percentualInput.value);
+    }
+
+    // Função para carregar os valores salvos
+    function carregarDados() {
+        valorPecaInput.value = localStorage.getItem('valorPeca') || '';
+        valorServicoInput.value = localStorage.getItem('valorServico') || '';
+        precoEnvioInput.value = localStorage.getItem('precoEnvio') || '';
+        percentualInput.value = localStorage.getItem('percentual') || '';
+    }
+
+    // Função para calcular o preço final
+    function calcularServico() {
+        let valorPeca = parseFloat(valorPecaInput.value.replace(',', '.')) || 0;
+        let valorServico = parseFloat(valorServicoInput.value.replace(',', '.')) || 0;
+        let precoEnvio = parseFloat(precoEnvioInput.value.replace(',', '.')) || 0;
+        let percentual = parseFloat(percentualInput.value) || 0;
+
+        let adicional = (valorPeca * percentual) / 100;
+        const valorFinal = valorPeca + adicional + valorServico + precoEnvio;
+
+        resultDisplay.textContent = valorFinal.toFixed(2).replace('.', ',');
+    }
+
+    // Evento para alternar a exibição das opções extras
+    toggleOptionsButton.addEventListener("click", () => {
+        extraOptions.classList.toggle("hidden");
     });
 
-    function calcularServico() {
-        let valorPeca = 0;
-        let maoDeObra;
-        let tipoReparo = null;
+    // Adiciona eventos para salvar os valores sempre que um input for modificado
+    [valorPecaInput, valorServicoInput, precoEnvioInput, percentualInput].forEach(input => {
+        input.addEventListener('input', salvarDados);
+    });
 
-        // Verificando o tipo de reparo
-        if (document.getElementById('repair-check-1').checked) {
-            tipoReparo = "1"; // Reparo sem peça
-            maoDeObra = 70;
-            valorPeca = 0;
-        } else if (document.getElementById('repair-check-2').checked) {
-            tipoReparo = "2"; // Reparo com peça fácil/médio
-            maoDeObra = 80;
-            valorPeca = parseFloat(document.getElementById('currency-input').value.replace(',', '.'));
-        } else if (document.getElementById('repair-check-3').checked) {
-            tipoReparo = "3"; // Reparo com peça difícil/iPhone
-            maoDeObra = 90;
-            valorPeca = parseFloat(document.getElementById('currency-input').value.replace(',', '.'));
-        } else {
-            alert("Escolha um tipo de reparo.");
-            return;
-        }
+    // Evento de clique no botão para calcular
+    calcButton.addEventListener('click', () => {
+        setTimeout(calcularServico, 100);
+    });
 
-        // Verificando se o valor da peça é válido
-        if (valorPeca < 0 || isNaN(valorPeca)) {
-            alert("Por favor, insira um valor válido para a peça.");
-            return;
-        }
-
-        // Capturando o valor do envio
-        let valorEnvio = parseFloat(document.getElementById('shipping-currency-input').value.replace(',', '.'));
-        if (isNaN(valorEnvio) || valorEnvio < 0) {
-            valorEnvio = 0; // Definindo valor padrão como 0 se não for um número válido
-        }
-
-        // Determinando o percentual de lucro
-        let percentualLucro = 0;
-        if (valorPeca <= 99) {
-            percentualLucro = 0.60;
-        } else if (valorPeca <= 199) {
-            percentualLucro = 0.45;
-        } else if (valorPeca <= 300) {
-            percentualLucro = 0.40;
-        } else {
-            percentualLucro = 0.38;
-        }
-
-        // Calculando o valor da peça com lucro
-        const valorPecaComLucro = (valorPeca * (1 + percentualLucro)).toFixed(2);
-        const valorServico = (parseFloat(valorPecaComLucro) + maoDeObra + valorEnvio).toFixed(2);
-
-        // Calculando valores para diferentes formas de pagamento
-        const valorPixDinheiro = valorServico; // Sem desconto
-        const valorCartao1x = (valorServico * 0.945).toFixed(2); // Ajustado para bater com R$246.91
-        const valorCartao2x = (valorPixDinheiro * 0.8911).toFixed(2); // Aplicado desconto de -10.89% no PixDinheiro
-        const valorDebito = (valorServico * 0.9771).toFixed(2);   // 2.29% de desconto para débito
-
-        // Atualizando os valores na página
-        document.querySelector('.result-price').textContent = `R$${valorPixDinheiro}`;
-        document.querySelector('.result-price-credit').textContent = `R$${valorCartao1x}`;
-        document.querySelector('.result-price-credit-2x').textContent = `R$${valorCartao2x}`;
-        document.querySelector('.result-price-debit').textContent = `R$${valorDebito}`;
-    }
+    // Carrega os valores salvos ao iniciar a página
+    carregarDados();
 });
